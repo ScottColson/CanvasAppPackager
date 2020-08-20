@@ -314,6 +314,10 @@ namespace CanvasAppPackager
         private static void ParseControl(CanvasAppScreen screen, IControl control, string directory, AutoValueExtractor autoValueExtractor)
         {
             autoValueExtractor.PushControl(control.Name);
+            if (directory.Substring(2).Contains(':'))
+            {
+                directory = directory.Substring(0,3) + directory.Substring(2).Replace(':', '_');
+            }
             Directory.CreateDirectory(directory);
             var sb = new StringBuilder();
 
